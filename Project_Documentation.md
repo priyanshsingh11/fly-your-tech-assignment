@@ -25,39 +25,52 @@ The **Fly Your Tech AI Chatbot** is a modular, high-performance RAG (Retrieval-A
 
 ```mermaid
 flowchart LR
+    %% ================= USER =================
+    User([User])
+    
+    %% ================= FRONTEND =================
+    FE[Frontend<br/>(React + Vite)]
+    
+    %% ================= BACKEND =================
+    API[FastAPI<br/>REST API]
+    LG[LangGraph<br/>State Manager]
+    
+    %% ================= LLM =================
+    LLM[Groq LPU<br/>LLaMA 3 70B]
+    
+    %% ================= TOOLS =================
+    RAG[FAISS RAG<br/>Company Data]
+    Leads[Leads Engine<br/>JSON Parsing]
+    Scheduler[Scheduler<br/>Mock API]
 
-    %% User Interaction
-    User --> UI
+    %% ================= FLOW =================
+    User --> FE
+    FE -->|HTTP| API
+    API --> LG
+    LG -->|Prompt + Context| LLM
+    LLM -->|Response| LG
 
-    %% Frontend
-    UI[Frontend - React & Vite]
-        -->|HTTP Requests| API
+    LG --> RAG
+    LG --> Leads
+    LG --> Scheduler
 
-    %% Backend / API Layer
-    API[FastAPI Backend - REST Endpoints]
-        -->|State Orchestration| LG
-
-    %% LangGraph State Manager
-    LG[LangGraph - Conversation State]
-        -->|Prompt & Context| LLM
-
-    %% LLM
-    LLM[Groq LPU - LLaMA 3 70B]
-        -->|Model Response| LG
-
-    %% Tools
-    LG -->|Retrieve Knowledge| RAG
-    LG -->|Structured Output| Leads
-    LG -->|Scheduled Tasks| Scheduler
-
-    RAG[FAISS RAG - Company Data] --> LG
-    Leads[Leads Engine - JSON Parsing] --> LG
-    Scheduler[Scheduler - Mock API] --> LG
-
-    %% Response Flow Back
     LG --> API
-    API --> UI
-    UI --> User
+    API --> FE
+    FE --> User
+
+    %% ================= STYLES =================
+    classDef user fill:#f8f9fa,stroke:#adb5bd,stroke-width:2px
+    classDef frontend fill:#e7f1ff,stroke:#007bff,stroke-width:2px
+    classDef backend fill:#f0fff4,stroke:#28a745,stroke-width:2px
+    classDef llm fill:#fff5f5,stroke:#dc3545,stroke-width:2px
+    classDef tools fill:#fff9db,stroke:#f1c40f,stroke-width:2px
+
+    class User user
+    class FE frontend
+    class API,LG backend
+    class LLM llm
+    class RAG,Leads,Scheduler tools
+
 ```
 ### RAG (Retrieval-Augmented Generation) Workflow
 1.  **Ingestion**: The system reads `company_data.txt` using LangChain's `TextLoader`.

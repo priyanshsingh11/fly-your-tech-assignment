@@ -24,30 +24,24 @@ The **Fly Your Tech AI Chatbot** is a modular, high-performance RAG (Retrieval-A
 ## 3. System Design & Architecture
 ```mermaid
 flowchart LR
-    %% USER
-    User([User])
+    User[User]
 
-    %% FRONTEND
-    FE[Frontend (React + Vite)]
+    FE[Frontend - React and Vite]
 
-    %% BACKEND
     API[FastAPI REST API]
     LG[LangGraph State Manager]
 
-    %% LLM
     LLM[Groq LPU - LLaMA 3 70B]
 
-    %% TOOLS
     RAG[FAISS RAG - Company Data]
     Leads[Leads Engine - JSON Parsing]
     Scheduler[Scheduler - Mock API]
 
-    %% FLOW
     User --> FE
-    FE -->|HTTP| API
+    FE --> API
     API --> LG
-    LG -->|Prompt + Context| LLM
-    LLM -->|Response| LG
+    LG --> LLM
+    LLM --> LG
 
     LG --> RAG
     LG --> Leads
@@ -56,20 +50,8 @@ flowchart LR
     LG --> API
     API --> FE
     FE --> User
-
-    %% STYLES
-    classDef user fill:#f8f9fa,stroke:#adb5bd,stroke-width:2
-    classDef frontend fill:#e7f1ff,stroke:#007bff,stroke-width:2
-    classDef backend fill:#f0fff4,stroke:#28a745,stroke-width:2
-    classDef llm fill:#fff5f5,stroke:#dc3545,stroke-width:2
-    classDef tools fill:#fff9db,stroke:#f1c40f,stroke-width:2
-
-    class User user
-    class FE frontend
-    class API,LG backend
-    class LLM llm
-    class RAG,Leads,Scheduler tools
 ```
+
 ### RAG (Retrieval-Augmented Generation) Workflow
 1.  **Ingestion**: The system reads `company_data.txt` using LangChain's `TextLoader`.
 2.  **Chunking**: Data is split into manageable chunks (500 characters with 50-character overlap) for precise retrieval.

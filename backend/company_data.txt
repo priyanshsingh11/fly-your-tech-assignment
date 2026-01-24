@@ -1,0 +1,12 @@
+Company Name: Fly Your Tech
+Address: 123 Tech Lane, Silicon Valley, CA 94025
+Email: contact@flyyourtech.com
+Phone Number: +1 (555) 123-4567
+Services Offered: 
+- AI Strategy Consulting: Helping businesses navigate the AI landscape.
+- Custom LLM Development: Building tailored language models for specific needs.
+- RAG System Implementation: Connect your private data to powerful AI.
+- Full Stack AI Integration: End-to-end development of AI-powered applications.
+- GenAI Intern Training: Preparing the next generation of AI developers.
+Starting Price: $5,000 per project
+Mission: To fly your business into the future with cutting-edge technology.

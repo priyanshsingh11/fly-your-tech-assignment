@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "service_interested": "AI Strategy Consulting"
+  },
+  {
+    "name": "Bob Smith",
+    "email": "bob@techcorp.io",
+    "service_interested": "Custom LLM Development"
+  },
+  {
+    "name": "Charlie Brown",
+    "email": "charlie@startup.com",
+    "service_interested": "RAG System Implementation"
+  }
+]

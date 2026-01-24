@@ -22,8 +22,9 @@ The **Fly Your Tech AI Chatbot** is a modular, high-performance RAG (Retrieval-A
 ---
 
 ## 3. System Design & Architecture
+
+```mermaid
 flowchart LR
-``` mermaid
 
     %% User Interaction
     User --> UI
@@ -36,6 +37,7 @@ flowchart LR
     API[FastAPI Backend\nREST Endpoints]
         -->|State Orchestration| LG
 
+    %% LangGraph State Manager
     LG[LangGraph\nConversation State]
         -->|Prompt + Context| LLM
 
@@ -48,21 +50,15 @@ flowchart LR
     LG -->|Structured Output| Leads
     LG -->|Scheduled Tasks| Scheduler
 
-    RAG[FAISS RAG\nCompany Data]
-        --> LG
-
-    Leads[Leads Engine\nJSON Parsing]
-        --> LG
-
-    Scheduler[Scheduler\nMock API]
-        --> LG
+    RAG[FAISS RAG\nCompany Data] --> LG
+    Leads[Leads Engine\nJSON Parsing] --> LG
+    Scheduler[Scheduler\nMock API] --> LG
 
     %% Response Flow Back
     LG --> API
     API --> UI
     UI --> User
 ```
-
 ### RAG (Retrieval-Augmented Generation) Workflow
 1.  **Ingestion**: The system reads `company_data.txt` using LangChain's `TextLoader`.
 2.  **Chunking**: Data is split into manageable chunks (500 characters with 50-character overlap) for precise retrieval.

@@ -22,28 +22,27 @@ The **Fly Your Tech AI Chatbot** is a modular, high-performance RAG (Retrieval-A
 ---
 
 ## 3. System Design & Architecture
-
 ```mermaid
 flowchart LR
-    %% ================= USER =================
+    %% USER
     User([User])
-    
-    %% ================= FRONTEND =================
-    FE[Frontend<br/>(React + Vite)]
-    
-    %% ================= BACKEND =================
-    API[FastAPI<br/>REST API]
-    LG[LangGraph<br/>State Manager]
-    
-    %% ================= LLM =================
-    LLM[Groq LPU<br/>LLaMA 3 70B]
-    
-    %% ================= TOOLS =================
-    RAG[FAISS RAG<br/>Company Data]
-    Leads[Leads Engine<br/>JSON Parsing]
-    Scheduler[Scheduler<br/>Mock API]
 
-    %% ================= FLOW =================
+    %% FRONTEND
+    FE[Frontend (React + Vite)]
+
+    %% BACKEND
+    API[FastAPI REST API]
+    LG[LangGraph State Manager]
+
+    %% LLM
+    LLM[Groq LPU - LLaMA 3 70B]
+
+    %% TOOLS
+    RAG[FAISS RAG - Company Data]
+    Leads[Leads Engine - JSON Parsing]
+    Scheduler[Scheduler - Mock API]
+
+    %% FLOW
     User --> FE
     FE -->|HTTP| API
     API --> LG
@@ -58,19 +57,18 @@ flowchart LR
     API --> FE
     FE --> User
 
-    %% ================= STYLES =================
-    classDef user fill:#f8f9fa,stroke:#adb5bd,stroke-width:2px
-    classDef frontend fill:#e7f1ff,stroke:#007bff,stroke-width:2px
-    classDef backend fill:#f0fff4,stroke:#28a745,stroke-width:2px
-    classDef llm fill:#fff5f5,stroke:#dc3545,stroke-width:2px
-    classDef tools fill:#fff9db,stroke:#f1c40f,stroke-width:2px
+    %% STYLES
+    classDef user fill:#f8f9fa,stroke:#adb5bd,stroke-width:2
+    classDef frontend fill:#e7f1ff,stroke:#007bff,stroke-width:2
+    classDef backend fill:#f0fff4,stroke:#28a745,stroke-width:2
+    classDef llm fill:#fff5f5,stroke:#dc3545,stroke-width:2
+    classDef tools fill:#fff9db,stroke:#f1c40f,stroke-width:2
 
     class User user
     class FE frontend
     class API,LG backend
     class LLM llm
     class RAG,Leads,Scheduler tools
-
 ```
 ### RAG (Retrieval-Augmented Generation) Workflow
 1.  **Ingestion**: The system reads `company_data.txt` using LangChain's `TextLoader`.

@@ -30,19 +30,19 @@ flowchart LR
     User --> UI
 
     %% Frontend
-    UI[Frontend\nReact + Vite]
+    UI[Frontend(React + Vite)]
         -->|HTTP Requests| API
 
     %% Backend / API Layer
-    API[FastAPI Backend\nREST Endpoints]
+    API[FastAPI Backend \ REST Endpoints]
         -->|State Orchestration| LG
 
     %% LangGraph State Manager
-    LG[LangGraph\nConversation State]
+    LG[LangGraph \ Conversation State]
         -->|Prompt + Context| LLM
 
     %% LLM
-    LLM[Groq LPU\nLlama 3.3 70B]
+    LLM[Groq LPU(lama 3.3 70B)]
         -->|Model Response| LG
 
     %% Tools
@@ -50,9 +50,9 @@ flowchart LR
     LG -->|Structured Output| Leads
     LG -->|Scheduled Tasks| Scheduler
 
-    RAG[FAISS RAG\nCompany Data] --> LG
-    Leads[Leads Engine\nJSON Parsing] --> LG
-    Scheduler[Scheduler\nMock API] --> LG
+    RAG[FAISS RAG \ Company Data] --> LG
+    Leads[Leads Engine \ JSON Parsing] --> LG
+    Scheduler[Scheduler \ Mock API] --> LG
 
     %% Response Flow Back
     LG --> API

@@ -38,7 +38,7 @@ A simple, clean, and modular AI-powered chatbot implementation for the "Fly Your
    ```
 2. Create a `.env` file and add your Google API Key:
    ```
-   GOOGLE_API_KEY=your_actual_key_here
+   GROQ_API_KEY=your_actual_key_here
    ```
 3. Install dependencies:
    ```bash
